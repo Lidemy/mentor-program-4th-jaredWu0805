@@ -9,6 +9,6 @@
 7. 將更新後的 branch 上傳至 GitHub：**git push origin week1**
 8. 在 GitHub 上確認新的 branch 並 **create pull request** 將新的 branch merge 進 master branch 裡
 9. 將 PR 的連結貼到作業連結
-10. 助教批改完並完成 merge 後回到 Git Bash 下載新的 master branch：**git pull origin master**
-11. 回到 master branch：**git checkout master**
+10. 助教批改完並完成 merge 後回到 Git Bash 並回到 master branch：**git checkout master** 
+11. 下載新的 master branch：**git pull origin master**
 12. 刪除 week1 branch：**git branch -d week1**
