@@ -5,7 +5,7 @@ const rl = readline.createInterface({
   input: process.stdin,
 });
 
-function countNarcissistic(n, m) {
+function judgeNarcissistic(n, m) {
   for (let i = n; i <= m; i += 1) {
     if (i >= 0 && i < 10) {
       console.log(i);
@@ -29,7 +29,7 @@ function countNarcissistic(n, m) {
 
 function solve(input) {
   const tmp = input[0].split(' ');
-  countNarcissistic(Number(tmp[0]), Number(tmp[1]));
+  judgeNarcissistic(Number(tmp[0]), Number(tmp[1]));
 }
 
 rl.on('line', (line) => {
