@@ -7,8 +7,8 @@ const rl = readline.createInterface({
 
 // the array of items
 const arr = [];
-let numOfItems = 0;
-
+let numOfItems;
+let limit;
 function greedyThief(capacity, index) {
   if (index >= numOfItems) return 0;
   const tmp1 = greedyThief(capacity, index + 1);
@@ -23,7 +23,6 @@ function greedyThief(capacity, index) {
 
 function solve(input) {
   const tmp = input[0].split(' ');
-  let limit;
   [numOfItems, limit] = tmp;
   for (let i = 1; i <= tmp[0]; i += 1) {
     const item = input[i].split(' ');
