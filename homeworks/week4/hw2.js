@@ -2,8 +2,9 @@ const https = require('https');
 const process = require('process');
 
 const cmd = process.argv[2];
-
-if (cmd === 'list') {
+const arg3 = process.argv[3];
+const arg4 = process.argv[4];
+function list() {
   https.get(
     'https://lidemy-book-store.herokuapp.com/books?_limit=20', (res) => {
       res.on('data', (chunk) => {
@@ -12,27 +13,33 @@ if (cmd === 'list') {
       });
     },
   );
-} else if (cmd === 'read') {
+}
+
+function read(id) {
   https.get(
-    `https://lidemy-book-store.herokuapp.com/books/${process.argv[3]}`, (res) => {
+    `https://lidemy-book-store.herokuapp.com/books/${id}`, (res) => {
       res.on('data', (chunk) => {
         const parsed = JSON.parse(chunk);
         console.log(parsed.name);
       });
     },
   );
-} else if (cmd === 'delete') {
+}
+
+function deleteBook(id) {
   const deleteOptions = {
     hostname: 'lidemy-book-store.herokuapp.com',
-    path: `/books/${process.argv[3]}`,
+    path: `/books/${id}`,
     port: 443,
     method: 'DELETE',
   };
   const req = https.request(deleteOptions);
   req.end();
-} else if (cmd === 'create') {
+}
+
+function create(bookName) {
   const data = JSON.stringify({
-    name: process.argv[3],
+    name: bookName,
   });
 
   const createOptions = {
@@ -49,14 +56,16 @@ if (cmd === 'list') {
 
   createReq.write(data);
   createReq.end();
-} else if (cmd === 'update') {
+}
+
+function update(id, bookName) {
   const updateData = JSON.stringify({
-    name: process.argv[4],
+    name: bookName,
   });
 
   const updateOptions = {
     hostname: 'lidemy-book-store.herokuapp.com',
-    path: `/books/${process.argv[3]}`,
+    path: `/books/${id}`,
     port: 443,
     method: 'PATCH',
     headers: {
@@ -68,6 +77,18 @@ if (cmd === 'list') {
 
   updateReq.write(updateData);
   updateReq.end();
+}
+
+if (cmd === 'list') {
+  list();
+} else if (cmd === 'read') {
+  read(arg3);
+} else if (cmd === 'delete') {
+  deleteBook(arg3);
+} else if (cmd === 'create') {
+  create(arg3);
+} else if (cmd === 'update') {
+  update(arg3, arg4);
 } else {
   console.log('Command not found.');
 }
