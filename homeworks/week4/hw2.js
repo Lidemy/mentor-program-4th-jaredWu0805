@@ -8,10 +8,20 @@ const arg4 = process.argv[4];
 function list() {
   https.get(
     'https://lidemy-book-store.herokuapp.com/books?_limit=20', (res) => {
-      res.on('data', (chunk) => {
-        const parsed = JSON.parse(chunk);
-        parsed.forEach(book => console.log(`${book.id} ${book.name}`));
+      if (res.statusCode < 200 || res.statusCode >= 300) {
+        return console.log('Fetch failed');
+      }
+      let rawData = '';
+      res.on('data', (chunk) => { rawData += chunk; });
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(rawData);
+          parsed.forEach(book => console.log(`${book.id} ${book.name}`));
+        } catch (e) {
+          console.error(e.message);
+        }
       });
+      return true;
     },
   );
 }
@@ -19,10 +29,20 @@ function list() {
 function read(id) {
   https.get(
     `https://lidemy-book-store.herokuapp.com/books/${id}`, (res) => {
-      res.on('data', (chunk) => {
-        const parsed = JSON.parse(chunk);
-        console.log(parsed.name);
+      if (res.statusCode < 200 || res.statusCode >= 300) {
+        return console.log('Fetch failed');
+      }
+      let rawData = '';
+      res.on('data', (chunk) => { rawData += chunk; });
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(rawData);
+          console.log(parsed.name);
+        } catch (e) {
+          console.error(e.message);
+        }
       });
+      return true;
     },
   );
 }
@@ -80,16 +100,22 @@ function update(id, bookName) {
   updateReq.end();
 }
 
-if (cmd === 'list') {
-  list();
-} else if (cmd === 'read') {
-  read(arg3);
-} else if (cmd === 'delete') {
-  deleteBook(arg3);
-} else if (cmd === 'create') {
-  create(arg3);
-} else if (cmd === 'update') {
-  update(arg3, arg4);
-} else {
-  console.log('Command not found.');
+switch (cmd) {
+  case 'list':
+    list();
+    break;
+  case 'read':
+    read(arg3);
+    break;
+  case 'delete':
+    deleteBook(arg3);
+    break;
+  case 'create':
+    create(arg3);
+    break;
+  case 'update':
+    update(arg3, arg4);
+    break;
+  default:
+    console.log('Command not found.');
 }
