@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>新拖延運動報名表單</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<div class="form__wrapper">
+    <section class="section">
+        <div class="form__title">新拖延運動報名表單</div>
+    </section>
+    <section class="section">
+        <div class="event__info">
+            活動日期：2020/12/10 ~ 2020/12/11<br>
+            活動地點：台北市大安區新生南路二段1號
+        </div>
+    </section>
+    <section class="section">
+        <div class="warning">
+            <span class="red">*</span>
+            <span class="red">必填</span>
+        </div>
+    </section>
+    <form class="section" action="">
+        <div class="form__items">
+            <label class="input__title" for="nickname">暱稱<span class="red">*</span></label><br>
+            <input type="text" id="nickname" class="input__text" name="nickname"
+                   placeholder="您的回答" autofocus required><br>
+        </div>
+        <div class="form__items">
+            <label class="input__title" for="email">電子郵件<span class="red">*</span></label><br>
+            <input type="email" id="email" class="input__text" name="email"
+                   placeholder="您的電子郵件" autofocus required><br>
+        </div>
+        <div class="form__items">
+            <label class="input__title" for="cellphone">手機號碼<span class="red">*</span></label><br>
+            <input type="text" id="cellphone" class="input__text" name="cellphone"
+                   placeholder="您的手機號碼" autofocus required><br>
+        </div>
+        <div class="form__items">
+            <label class="input__title">報名類型<span class="red">*</span></label><br>
+            <div class="radio__option">
+                <input type="radio" id="option1" name="event__type"
+                       placeholder="TBD" required>
+                <label class="options" for="option1">躺在床上用想像力實作</label>
+            </div>
+            <div class="radio__option">
+                <input type="radio" id="option2" name="event__type"
+                       placeholder="TBD" required>
+                <label class="options" for="option2"> 趴在地上滑手機找現成的</label>
+            </div>
+        </div>
+        <div class="form__items">
+            <label class="input__title" for="answer">怎麼知道這個活動的？<span class="red">*</span></label><br>
+            <input type="text" id="answer" class="input__text" name="answer"
+                   placeholder="您的回答" autofocus required><br>
+        </div>
+        <div class="form__items">
+            <label class="input__title" for="other">其他</label><br>
+            <label class="words" for="other"> 對活動的一些建議</label><br>
+            <input type="text" id="other" class="input__text" name="other"
+                   placeholder="您的回答" autofocus required><br>
+        </div>
+        <div class="form__items">
+            <input type="submit" value="提交"><br>
+            <div class="caution">請勿透過表單送出您的密碼。</div>
+        </div>
+    </form>
+</div>
+<div class=" footer">
+    <span class="copyright"> © 2020 © Copyright. All rights Reserved.</span>
+</div>
+</body>
+</html>
