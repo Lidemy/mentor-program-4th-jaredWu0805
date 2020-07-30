@@ -75,7 +75,6 @@
         function(e) {
             const questionClicked = e.target.closest('.question');
 
-
             if (questionClicked !== null && !questionClicked.hasAttribute('answered')) {
                 const question__desc = questionClicked.querySelector('.question__desc');
                 const answer = question__desc.getAttribute('data-option');
@@ -93,7 +92,6 @@
                 questionClicked.removeAttribute('answered');
             }
     });
-
 
 </script>
 <footer class="wrapper">

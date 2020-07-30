@@ -71,7 +71,6 @@
             <label class="words" for="other"> 對活動的一些建議</label><br>
             <input type="text" id="other" class="input__text" name="other"
                    placeholder="您的回答" autofocus><br>
-            <div class="reqMsg">* 必填</div>
         </div>
         <div class="form__items">
             <input type="submit" value="提交"><br>
@@ -112,15 +111,18 @@
         for (let i = 0; i < items.length; i += 1) {
             const inputList = items[i].querySelectorAll('input');
             const msg = items[i].querySelector('.reqMsg');
-            if (isEmpty(inputList)) {
-                isComplete = false;
-                if (msg !== null) msg.classList.add('active');
-            } else {
-                if (msg !== null) msg.classList.remove('active');
-                const key = items[i].title;
-                const value = getValue(inputList);
-                if (key !== '') formData[key] = value;
+            const key = items[i].title;
+            const value = getValue(inputList);
+            if (msg) {
+                if (!value) {
+                    isComplete = false;
+                    msg.classList.add('active');
+                } else {
+                    msg.classList.remove('active');
+                }
             }
+            if (key && value) formData[key] = value;
+
         }
         if (isComplete) {
             let alertMsg = '您的回覆\n';
@@ -130,6 +132,7 @@
             alert(alertMsg);
         }
     });
+
 
 </script>
 </body>
