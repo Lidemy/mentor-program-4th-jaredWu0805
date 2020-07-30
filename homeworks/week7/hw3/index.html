@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>餐廳官網</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div class="wrapper">
+    <h2 class="title">Todo List</h2>
+    <form class="add__todo">
+        <input type="text" name="task" placeholder="Add task"/>
+        <input type="submit" class="add__btn" value="add"/>
+    </form>
+    <section class="todo__list">
+        <div class="task">
+            <div class="task__desc">
+                Write homework3
+                Write homework3
+            </div>
+            <div class="btns">
+                <button class="complete__btn btn">done</button>
+                <button class="delete__btn btn">delete</button>
+            </div>
+        </div>
+        <div class="task">
+            <div class="task__desc">
+                Write homework3
+            </div>
+            <div class="btns">
+                <button class="complete__btn btn">done</button>
+                <button class="delete__btn btn">delete</button>
+            </div>
+        </div>
+        <div class="task">
+            <div class="task__desc">
+                Write homework3
+            </div>
+            <div class="btns">
+                <button class="complete__btn btn">done</button>
+                <button class="delete__btn btn">delete</button>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    // add button
+    const form = document.querySelector('.add__todo');
+    form.addEventListener('submit',
+        function(e) {
+            e.preventDefault();
+            const inputText = form.querySelector('input[type="text"]');
+            if (inputText.value !== '') {
+                let div = document.createElement('div');
+                div.classList.add('task');
+                div.innerHTML = `
+                    <div class="task__desc">
+                        ${inputText.value}
+                    </div>
+                    <div class="btns">
+                        <button class="btn complete__btn">done</button>
+                        <button class="btn delete__btn">delete</button>
+                    </div>
+                `
+                document.querySelector('.todo__list').appendChild(div);
+                inputText.value = '';
+            }
+    });
+
+    // done and delete button
+    const todoList = document.querySelector('.todo__list');
+    todoList.addEventListener('click',
+        function(e) {
+            if (e.target.classList.contains('complete__btn')) {
+                const task = e.target.closest('.task');
+                task.querySelector('.task__desc').classList.toggle('active');
+            }
+            if (e.target.classList.contains('delete__btn')) {
+                const task = e.target.closest('.task');
+                task.remove();
+            }
+        });
+
+</script>
+</body>
+</html>
