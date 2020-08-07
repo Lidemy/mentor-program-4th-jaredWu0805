@@ -36,9 +36,10 @@
         </div>
         <div class="lottery__prize">
             <div class="item__title">獎  品：</div>
-            <div class="item__desc">頭獎一名：日本京來回雙人遊(市價14990元)<br>
-                貳獎三名：90 吋電視一台(市價5990元)<br>
-                參獎十名：知名 YouTuber 簽名握手會入場券一張(市價1500元)
+            <div class="item__desc">
+                ❤ 頭獎一名：日本京來回雙人遊(市價14990元)<br>
+                ❤ 貳獎三名：90 吋電視一台(市價5990元)<br>
+                ❤ 參獎十名：知名 YouTuber 簽名握手會入場券一張(市價1500元)
             </div>
         </div>
         <div class="btn" id="draw">我要抽獎</div>
@@ -100,6 +101,7 @@
         btnReturn.parentElement.classList.toggle('hidden');
     }
 
+    // Request
     let prize = '';
     const req = new XMLHttpRequest();
     req.onload = function() {
@@ -120,6 +122,7 @@
         console.log('error');
     }
 
+    // Btn event listener
     const btnDraw = document.querySelector('#draw');
     const btnReturn = document.querySelector('#return');
     let lastDiv;

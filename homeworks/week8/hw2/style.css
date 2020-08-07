@@ -81,11 +81,17 @@ li:hover {
     margin: 12px 15px;
     box-shadow: 1px 1px 15px grey;
     transition: 0.125s;
+}
 
+.empty__card {
+    display: inline-block;
+    width: 320px;
+    margin: 12px 15px;
 }
 
 .card:hover {
     transform: scale(1.2);
+    filter: brightness(1.2);
 }
 .stream__preview {
     width: 320px;
