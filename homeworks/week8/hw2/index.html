@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Twitch 熱門遊戲</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<nav class="nav__bar">
+    <div class="page__title">Twitch Top Games</div>
+    <ul class="top__games">
+        <li id="no0"></li>
+        <li id="no1"></li>
+        <li id="no2"></li>
+        <li id="no3"></li>
+        <li id="no4"></li>
+    </ul>
+</nav>
+<div class="wrapper">
+    <section class="streams__section">
+        <div class="game__title">Choose a game title</div>
+        <div class="page__desc">Top 20 popular live streams sorted by current viewers</div>
+        <div class="stream__contents">
+        </div>
+    </section>
+</div>
+<script>
+    function twitchRequest(request, apiUrl, async) {
+        request.open('GET', apiUrl, async);
+        request.setRequestHeader('Client-ID', 'x14has4vzwes16ijg7e05j9xz8rcwp');
+        request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
+        request.send();
+    }
+
+    function appendStreams(streamArr) {
+        const contents = document.querySelector('.stream__contents');
+        contents.innerHTML = '';
+        let gameTitle = document.querySelector('.game__title');
+        gameTitle.textContent = streamArr[0].game;
+        streamArr.forEach( stream => {
+            let imgURL = stream.preview.medium;
+            let logo = stream.channel.logo;
+            let status = stream.channel.status;
+            let username = stream.channel.display_name;
+            let streamURL = stream.channel.url;
+
+            let div = document.createElement('div');
+            div.classList.add('card');
+            div.innerHTML = `
+            <a href="${streamURL}" target="_black">
+                <div class="stream__preview"><img src="${imgURL}"></div>
+                <div class="stream__brief">
+                    <div class="stream__logo" style="background-image: url(${logo})"></div>
+                    <div class="stream__details">
+                        <div class="stream__status">${status}</div>
+                        <div class="stream__username">${username}</div>
+                    </div>
+                </div>
+            </a>
+            `;
+
+            contents.appendChild(div);
+        });
+    }
+
+    let req = new XMLHttpRequest();
+    let gameReq = new XMLHttpRequest();
+    twitchRequest(req, 'https://api.twitch.tv/kraken/games/top?limit=5', true);
+
+    // Search top game titles
+    req.onload = function() {
+        if ( req.status >= 200 && req.status < 400) {
+            const json = JSON.parse(req.responseText);
+            let gamesArr = json.top;
+            let i = 0;
+            gamesArr.forEach( element => {
+                document.querySelector(`#no${i}`).textContent = element['game'].name;
+                i += 1;
+            });
+        } else {
+            console.log('err');
+        }
+    };
+
+    req.onerror = function() {
+        console.log('error');
+    };
+
+    // Search top 20 streams of a game
+    gameReq.onload = function() {
+        if ( gameReq.status >= 200 && gameReq.status < 400) {
+            const gameStreams = JSON.parse(gameReq.responseText);
+            appendStreams(gameStreams.streams)
+        } else {
+            console.log('gameReq err');
+        }
+    }
+
+        gameReq.onerror = function() {
+        console.log('gameReq error');
+    };
+
+    // List item event listener
+    const ul = document.querySelector('.top__games');
+    ul.addEventListener('click', function(e) {
+        ul.querySelectorAll('li').forEach( item => {
+            item.classList.remove('clicked');
+        });
+        if (!e.target.classList.contains('top__games')) {
+            e.target.classList.toggle('clicked');
+            const game = e.target.textContent;
+            twitchRequest(gameReq, `https://api.twitch.tv/kraken/streams/?game=${game}&limit=20`, true);
+        }
+    });
+
+    // reload page
+    document.querySelector('.page__title').addEventListener('click', function(e) {
+        location.reload();
+    });
+
+
+</script>
+</body>
+</html>
