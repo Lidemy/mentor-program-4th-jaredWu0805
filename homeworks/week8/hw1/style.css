@@ -1,0 +1,303 @@
+@font-face {
+    font-family: 'chinese';
+    src: local('Microsoft JhengHei'),
+         local('serif');
+  }
+
+div.hidden {
+    display: none;
+}
+
+html {
+    font-family: 'Questrial', chinese;
+}
+
+.navbar {
+    box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+}
+
+.wrapper {
+    max-width: 1920px;
+    margin: 0px auto;
+    background-size: cover;
+}
+
+.navbar .wrapper {
+    background: #ffffff;
+    height: 84px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar__site-name {
+    color: #489846;
+    font-size: 36px;
+    margin: 26px 0px 28px 96px;
+}
+
+.navbar__list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    margin-right: 96px;
+}
+
+.navbar__list li {
+    margin-left: 12px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.navbar__list li.active,
+.navbar__list li:hover {
+    background: #ff7286;
+}
+
+.navbar__list li.active a,
+.navbar__list li:hover a {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar__list li a {
+    padding: 13px 25px 11px;
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.footer__top {
+    width: 100%;
+    height: 198px;
+    background-color: #e8efee;
+    justify-content: space-between;
+    display: flex;
+}
+
+.footer__top__left {
+    color: #484848;
+    line-height: 2em;
+    padding-top: 35px;
+    padding-left: 96px;
+}
+
+.footer__top__right {
+    text-align: right;
+    margin: 35px 96px 0px 0px;
+}
+
+.footer__top__right .navbar__site-name {
+    margin: 0px 0px 19px 0px;
+}
+
+.footer_top__left__word {
+    color: #484848;
+    font-size: 14px;
+}
+
+.footer__bottom {
+    position: relative;
+    width: 100%;
+    height: 48px;
+    background-color: #35564b;
+    color: white;
+    font-size: 16px;
+}
+
+.copyright {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+h2 {
+    margin: 0;
+}
+
+.lottery__wrapper {
+    max-width: 1920px;
+    margin: 0px auto;
+    position: relative;
+    background-image: url("./lottery_pics/games-bn.png");
+    background-repeat: no-repeat;
+    min-height: 767px;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+
+.click {
+    border: 3px solid red;
+}
+
+.none__prize {
+    background-image: none;
+    background-color: black;
+}
+
+.third__prize {
+    background-image: url('./lottery_pics/third.jpg');
+}
+
+.second__prize {
+    background-image: url('./lottery_pics/second.jpg');
+}
+
+.first__prize {
+    background-image: url('./lottery_pics/first.png');
+}
+
+.event__container {
+    width: 30%;
+    background-color: white;
+    border-radius: 16px;
+    margin: 55px;
+    padding: 40px 40px 24px 40px;
+    height: fit-content;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.lottery__title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #5ec1b6;
+    margin-bottom: 20px;
+}
+
+.event__container > div:not(.btn){
+    display: flex;
+    border-bottom: solid 1px #cdcdcd;
+    padding: 20px 0px 25px;
+}
+
+.item__title {
+         padding-top: 2px;
+     font-size: 18px;
+      font-weight: bold;
+      text-align: left;
+      width: 100px;
+}
+
+.item__desc {
+    line-height: 1.63rem;
+    text-align: left;
+    width: 80%;
+}
+
+.btn {
+    margin-top: 40px;
+    border-radius: 8px;
+    background-color: #e62a45;
+    color: white;
+    width: 90%;
+    padding: 15px 0px;
+    font-size: 20px;
+    transition: transform 0.2s;
+    align-self: center;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.btn:active {
+    transform: none;
+}
+
+.msg__container {
+    margin-top: 190px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+}
+
+.white {
+    color: white;
+}
+
+.prize__msg {
+    font-size: 36px;
+    padding: 0px 30px;
+}
+
+#return {
+    max-width: 400px;
+}
+
+@media(max-width: 902px) {
+    .navbar .wrapper {
+        height: 140px;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0px;
+    }
+    .navbar__list {
+        margin-right: 0;
+        width: 100%;
+    }
+    .navbar__list li {
+        flex: 1;
+        margin-left: 0;
+        border-radius: 0;
+        text-align: center;
+    }
+
+    .navbar__site-name {
+        margin: 23px 0px 0px;
+    }
+
+    .footer__top {
+        height: 100%;
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .footer__top__left {
+        padding: 0px 10px 15px;
+    }
+    .footer__top__right {
+        margin: 0px;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .copyright {
+        font-size: 13px;
+    }
+
+    .event__container {
+        width: 100%;
+        margin: 30px 15px;
+        padding: 20px;
+    }
+
+    .lottery__title {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .event__container > div:not(.btn){
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item__title {
+        font-size: 16px;
+        text-align: center;
+        padding-left: 10px;
+    }
+    .item__desc {
+        text-align: center;
+    }
+}
