@@ -12,7 +12,7 @@
 	$content = $conn->real_escape_string($content);
 
 	$addSQL = sprintf(
-		"INSERT INTO comments (nickname, content) 
+		"INSERT INTO jaredWu0805_comments (nickname, content) 
 		VALUES ('%s', ' %s ')",
 		$nickname,
 		$content
@@ -23,6 +23,6 @@
 		die('Failed to add comment<br>' .$conn->error);
 	}	
 	echo 'Successfully add comment';
-	header('Location: ./index.php');
+	header('Location: index.php');
 ?>
 

@@ -13,7 +13,7 @@
 	} 	
 
 	// Get comments
-	$selectSQL = "SELECT * from comments ORDER BY created_at DESC";
+	$selectSQL = "SELECT * from jaredWu0805_comments ORDER BY created_at DESC";
 	$result = $conn->query($selectSQL);
 	if (!$result) die('Cannot get data from DB' . $conn->error);
 ?>

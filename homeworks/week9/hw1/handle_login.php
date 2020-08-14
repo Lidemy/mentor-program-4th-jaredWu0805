@@ -11,7 +11,7 @@
 	}
 
 	$selectSQL = sprintf( 
-		"SELECT * FROM users WHERE username='%s' and password='%s'",
+		"SELECT * FROM jaredWu0805_users WHERE username='%s' and password='%s'",
 		$username,
 		$password
 	);

@@ -12,7 +12,7 @@
 
 	// check if username exists
 	$selectSQL = sprintf( 
-		"SELECT * FROM users WHERE username='%s'",
+		"SELECT * FROM jaredWu0805_users WHERE username='%s'",
 		$username
 	);
 
@@ -25,7 +25,7 @@
 
 	// add user
 	$addSQL = sprintf(
-		"INSERT INTO users (nickname, username, password) 
+		"INSERT INTO jaredWu0805_users (nickname, username, password) 
 		VALUES ('%s', '%s', '%s')",
 		$nickname,
 		$username,

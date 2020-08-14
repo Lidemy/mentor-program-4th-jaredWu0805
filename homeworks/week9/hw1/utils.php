@@ -3,7 +3,7 @@
 	function getNicknameByUsername($username) {
 		global $conn;
 		$getNicknameSQL = sprintf("
-			SELECT nickname from users WHERE username='%s'",
+			SELECT nickname from jaredWu0805_users WHERE username='%s'",
 			$username
 		);
 
