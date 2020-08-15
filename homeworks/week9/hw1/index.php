@@ -52,8 +52,8 @@
 					<div class="add__comment">
 						<?php
 							echo "
-								<div>Hi！". $nickname ."</div>
-								<input type='hidden' name='nickname' value='". $nickname ."'>
+								<div>Hi！". escape($nickname) ."</div>
+								<input type='hidden' name='nickname' value='". escape($nickname) ."'>
 							"; 
 						?>
 						<div> 有什麼想說的嗎? </div>
@@ -73,7 +73,7 @@
 						<div class='icon'></div>
 						<div class='comment__details'>
 							<div class='first__row'>
-								<div class='nickname'>". $row['nickname'] ."</div>
+								<div class='nickname'>". escape($row['nickname']) ."</div>
 								<div class='created__at'>。". $row['created_at'] ."</div>
 								<div class='btns'>
 									<a href='./editComment.php?id=". $row['id'] ."' class='edit__btn' title='edit'></a>
@@ -81,7 +81,7 @@
 								</div>
 							</div>
 							<div class='second__row'>
-								<div class='comment__content'>". $row['content'] ."</div>
+								<div class='comment__content'>". escape($row['content']) ."</div>
 							</div>
 						</div>
 					</div>";

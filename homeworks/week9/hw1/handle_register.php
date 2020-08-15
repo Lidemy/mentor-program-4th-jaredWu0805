@@ -10,6 +10,13 @@
 		die('欄位不能為空白');	
 	}
 
+
+	$nickname = $conn->real_escape_string($nickname);
+	$username = $conn->real_escape_string($username);
+	$password = $conn->real_escape_string($password);
+
+	echo 'username: ' . $username;
+
 	// check if username exists
 	$selectSQL = sprintf( 
 		"SELECT * FROM jaredWu0805_users WHERE username='%s'",

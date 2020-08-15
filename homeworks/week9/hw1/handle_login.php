@@ -10,6 +10,9 @@
 		die('欄位不能為空白');	
 	}
 
+	$username = $conn->real_escape_string($username);
+	$password = $conn->real_escape_string($password);
+
 	$selectSQL = sprintf( 
 		"SELECT * FROM jaredWu0805_users WHERE username='%s' and password='%s'",
 		$username,

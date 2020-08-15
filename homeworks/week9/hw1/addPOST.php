@@ -9,6 +9,7 @@
 		die('欄位不能為空白');	
 	}
 
+	$nickname = $conn->real_escape_string($nickname);
 	$content = $conn->real_escape_string($content);
 
 	$addSQL = sprintf(
