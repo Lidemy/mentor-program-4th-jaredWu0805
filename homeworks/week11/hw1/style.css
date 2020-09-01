@@ -1,0 +1,328 @@
+.hide {
+	display: none;
+}
+
+body {
+	background-color: silver;
+	color: white;
+	margin: 0px;
+}
+
+header {
+	background-color: pink;
+	color: red;
+	text-align: center;
+	padding: 4px;
+}
+
+.add__section {
+	position: relative;
+	border-bottom: 1px solid grey;
+}
+
+.container {
+	background-color: #303135;
+	margin: 0 auto;
+	width: fit-content;
+	padding: 10px 30px 30px;
+}
+
+.general__form {
+	margin: 0px auto 10px;
+	width: 500px;
+	text-align: left;
+	display: inline-flex;
+	justify-content: space-between;
+}
+
+.add__comment {
+	width: 350px;
+}
+
+.add__comment div {
+	margin: 8px 0px 0px;
+}
+
+input, textarea {	
+    border: 1px solid #81bbaa;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.add__comment input {
+	width: 50%;
+}
+
+.text__container {
+	display: flex;
+}
+
+div.add__btn {
+	align-self: flex-end;
+}
+
+.add__btn button {
+	background-color: #2ead9e;
+	border: 1px solid darkcyan;
+	border-radius: 4px;
+	padding: 8px 15px; 
+	color: white;
+	font-size: 16px;
+	transition: 0.3s;
+}
+
+.add__btn button:hover {
+	background-color: darkcyan;
+	cursor: pointer;
+}
+
+.add__btn button:active {
+	transform: scale(0.8);
+}
+
+.comments {
+	margin-top: 10px;
+	background-color: #8c8c8c;
+	color: wheat;
+	width: 500px;
+}
+
+.comment {
+	padding: 10px 0px;	
+	display: flex;
+	align-items: center;
+}
+
+.icon {
+	border: 0.5px solid grey;
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	background-color: wheat;
+	margin: 0px 10px;
+	align-self: flex-start;
+}
+
+.comment__details {
+	text-align: left;
+	width: 400px;
+	height: fit-content;
+}
+
+.first__row {
+	display: inline-flex;
+	position: relative;
+	width: 400px;
+	margin: 10px 0px 5px;
+	align-items: center;
+}
+
+.nickname {
+	font-size: 16px;
+	color: white;
+	max-width: 250px;
+	overflow: hidden;
+    white-space: pre;
+    word-break: break-word;
+    text-overflow: ellipsis;
+}
+
+.created__at {
+	font-size: 12px;
+	color: #5dffe9b8;
+}
+
+.comment__content {
+	color: #ffd371;	
+	width: 400px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: pre;
+}
+
+.btns {
+	position: absolute;
+	display: inline-flex;
+	right: 0;
+}
+
+.btns a {
+	height: 10px;
+	width: 10px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-left: 5px;
+}
+
+.edit__btn {
+	background: url(./pencil.png);
+	
+}
+
+.delete__btn {
+	background-image: url(./trash_can.png);
+	
+}
+
+.warning {
+	color: #ff2525;
+	padding: 0px 0px 5px 0px;
+
+}
+
+.login__btns {
+	position: absolute;
+	right: 0;
+	
+	display: inline-flex;
+}
+
+.username {
+	align-self: center;
+	margin-right: 5px;
+}
+.login__btns a {
+	background-color: #2ead9e;
+	border-radius: 4px;
+	margin: 5px;
+	padding: 5px 8px;
+	text-decoration: none;
+	color: white;
+	border: 1px solid darkcyan;
+	transition: 0.3s;
+}
+
+.login__btns a:hover {
+	background-color: darkcyan;
+}
+
+.desc {
+	margin: 10px 0px;
+}
+
+.edit__nickname__btn {
+	background-color: #2ead9e;
+	border-radius: 4px;
+	margin: 5px;
+	padding: 4px 6px;
+	color: white;
+	border: 1px solid darkcyan;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.update__nickname__btn:hover {
+	background-color: darkcyan;
+}
+
+.update__form div{
+	width: 200px;
+	margin-top: 5px;
+}
+
+.update {
+	margin: 0px;
+	margin-top: 8px;
+}
+
+.page__info {
+	text-align: center;
+	margin-top: 15px;
+}
+
+.page__details {
+	margin-bottom: 12px;
+	font-size: 12px;
+}
+.page__index a {
+	background-color: #2ead9e;
+	border-radius: 4px;
+	margin: 5px 3px;
+	padding: 5px 8px;
+	text-decoration: none;
+	color: white;
+	border: 1px solid darkcyan;
+	font-size: 12px;
+	transition: 0.3s;
+}
+
+.add__section h1 {
+	margin-block-start: auto;
+	margin-top: 10px;
+}
+
+.admin__btn {
+	text-align: end;
+	padding-right: 5px;
+	padding-top: 5px;
+}
+
+.admin__btn a {
+	text-decoration: none;
+	color: #2ead9e;
+	font-size: 12px;
+}
+
+.admin__section {
+	position: relative;
+	width: 780px;
+}
+
+.admin__container {
+	font-size: 22px;
+}
+
+.admin__container a {
+	text-decoration: none;
+}
+
+.table__container, .admin__container {
+	padding-bottom: 15px;
+	border-bottom: solid 1px grey;
+}
+
+.admin__users {
+	border: solid 1px silver;
+	font-size: 15px;
+	padding: 10px;
+	width: -webkit-fill-available;
+}
+
+thead {
+	background-color: #2ead9e;
+}
+
+table, th, td {
+	text-align: center;
+	border: 1px solid silver;
+	border-collapse: collapse;
+	padding: 8px;
+}
+
+td {
+	overflow-wrap: anywhere;
+}
+
+.admin__edit__btn {
+	background-color: #2ead9e;
+	border-radius: 4px;
+	padding: 3px 5px;
+	text-decoration: none;
+	color: white;
+	border: 1px solid darkcyan;
+	transition: 0.3s;
+}
+
+#user__input {
+	width: 80%;
+}
+
+.admin__username {
+	position: absolute;
+	right: 5px;
+	top: 55px;
+}
+
+.add__comment .banned__warning {
+	margin-bottom: 10px;
+}

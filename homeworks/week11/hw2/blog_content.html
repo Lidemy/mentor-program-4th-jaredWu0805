@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title> Jared's Blog </title>
+	<title> Jared's Blog - blog content </title>
 	<link rel="stylesheet" href="./style.css">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,9 +15,9 @@
 				<div class="login__title">Log In</div>
 				<form class="login__form" method="POST" action="#">
 					<div class="input__desc">USERNAME</div>
-					<input id="username" autofocus required/>
+					<input type="input" id="username" focus required/>
 					<div class="input__desc">PASSWORD</div>
-					<input type="password" id="password" required/>
+					<input type="password" id="password" focus required/>
 					<button class="form__btn" type="submit">SIGN IN</button>
 				</form>
 				<div id="warning__msg"></div>
@@ -47,7 +47,7 @@
 					存放新聞之地
 				</div>
 				<div class="page__subtitle">
-					Welcome to my news' blog
+					Blog
 				</div>
 			</div>
 		</div>
@@ -63,7 +63,7 @@
 		</div>
 	</footer>
 	<script>
-		// Display hidden items when logged in
+				// Display hidden items when logged in
 		function determineHidden (class1, class2) {
 			if (class1 !== null){
 				elements = document.querySelectorAll(class1);
@@ -85,7 +85,6 @@
 			switch (target.id) {
 				case "login__btn" : 
 					$('.login__wrapper').slideToggle('slow');
-					// $('#username').attr('autofocus', 'true');
 					break;
 				case "logout__btn" :
 					$.get('./api_logout.php').done(()=>{
@@ -100,38 +99,42 @@
 		    return $('<div/>').text(str).html();
 		}
 
-		// load blogs
+		let params = (new URL(document.location)).searchParams;
+		let id = params.get('id');
+		
+		// load blog content
 		$.ajax({
-			url: "./api_blogs.php",
-			data: {
-				offset: 0,
-				limit: 5
-			},
-			success: function(res) {
+			url: "./api_one_blog.php?id=" + id,
+			success: function(data) {
 				let blogContainer = $(".blogs__container");
-				blogs = res.blogs;
+				blogs = data.blogs;
+				if (blogs === undefined) {
+					console.log('cannot get the blog');
+				}
+				
 				blogs.forEach(blog => {
 					blogContainer.append(`
-		  				<div class="blog">
-								<div class="title__row">
-									<div class="blog__title">${htmlEscape(blog['title'])}</div>
-									<div class="edit__btn__container">
-										<a class="edit__btn logged__in hidden" href="./blog_edit.html?id=${blog['id']}">編輯</a>
-									</div>
+	  				<div class="blog list__height">
+							<div class="title__row">
+								<div class="blog__title">${htmlEscape(blog['title'])}</div>
+								<div class="edit__btn__container">
+									<a class="edit__btn logged__in hidden" href="./blog_edit.html?id=${blog['id']}">編輯</a>
+									<a class="edit__btn logged__in hidden" href="./api_delete_blog.php?id=${blog['id']}">刪除</a>
 								</div>
-							<div class="blog__details">
-								<div class="clock__img"></div>
-								<div class="blog__time">${htmlEscape(blog['created_at'])}</div>
-								<div class="blog__category">熱門新聞</div>
 							</div>
-							<div class="blog__content">${htmlEscape(blog['blog'])}</div>
-							<div class="last__row">
-								<div class="blank">blank</div>
-								<a class="more__btn" href="./blog_content.html?id=${blog['id']}">READ MORE</a>
-							</div>
+						<div class="blog__details">
+							<div class="clock__img"></div>
+							<div class="blog__time">${htmlEscape(blog['created_at'])}</div>
+							<div class="blog__category">熱門新聞</div>
 						</div>
-		  			`);
-				});
+						<div class="blog__content one__blog">${htmlEscape(blog['blog'])}</div>
+						<div class="last__row">
+							<div class="blank">blank</div>
+							<a class="more__btn" href="./blog_list.html" >返回文章列表</a>
+						</div>
+					</div>
+		  			`)
+				})
 			}
 		}).done(function() {
 			// Check privilege	
@@ -141,7 +144,7 @@
 					let json = JSON.parse(req.responseText);
 					if (json[0]['admin']) {
 						determineHidden('.logged__in', '.logged__out');
-					} 
+					}
 				}
 			}
 					
@@ -175,7 +178,7 @@
 			let password = $("#password").val();
 			$.post( "api_login.php", { username: username, password: password })
 			  .done(function(data) {
-			  	console.log(data);
+			 
 			  	msg = data[0]['msg'];
 			  	if (msg === true) {
 			  		location.reload();
@@ -184,6 +187,8 @@
 				}
 			  });
 		});
+
+		
 
 	</script>
 </body>
