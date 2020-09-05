@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title> Jared's Blog - Add blog </title>
+	<link rel="stylesheet" href="./style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="login__wrapper hidden">
+		<div class="login__container">
+			<div class="login__desc">
+				<div class="login__title">Log In</div>
+				<form class="login__form" method="POST" action="#">
+					<div class="input__desc">USERNAME</div>
+					<input type="input" id="username" focus required/>
+					<div class="input__desc">PASSWORD</div>
+					<input type="password" id="password" focus required/>
+					<button class="form__btn" type="submit">SIGN IN</button>
+				</form>
+				<div id="warning__msg"></div>
+			</div>
+		</div>
+	</div>
+	<nav class="nav__bar">
+		<div class="wrapper">
+			<a class="icon" href="./index.html">Jared's Blog</a>
+			<div class="link__btns btns1">
+				<a class="link__btn" href="./blog_list.html">文章列表</a>
+				<a class="link__btn" href="#">分類專區</a>
+				<a class="link__btn" href="./about_me.html">關於我</a>
+			</div>
+			<div class="link__btns btns2">
+				<a class="link__btn logged__in hidden" id="admin__btn" href="./admin.html">管理後台</a>
+				<a class="link__btn logged__in hidden" id="new__post__btn" href="new_blog.html">發新文章</a>
+				<a class="link__btn logged__in hidden" id="logout__btn" href="#">登出</a>
+				<a class="link__btn logged__out" id="login__btn" href="#">登入</a>
+			</div>
+		</div>
+	</nav>
+	<div class="wrapper">
+		<div class="banner">
+			<div class="banner__desc">
+				<div class="page__title">
+					新增文章
+				</div>
+				<div class="page__subtitle">
+					Say something...
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="wrapper blogs__wrapper ">
+		<div class="blogs__container">
+			<div class="blog list__height">
+				<div class="title__row new__blog">
+					新增文章
+				</div>
+				<form class="new__blog__form" method="POST" action="./api_new_blog.php">
+					<input class="new__blog__title" name="new_title" placeholder="請輸入標題" required>
+					<select name="category" >
+						<option selected disabled>選擇文章分類</option>
+						<option value="歷史回顧">歷史回顧</option>
+						<option value="其他">其他</option>
+					</select>
+					<textarea class="blog__text" name="blog_content" placeholder="說些什麼..."></textarea>
+					<div class="submit__container">
+						<button type="submit" class="submit__btn">發送</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="copyright">
+			Copyright © 2020 Jared's Blog All Rights Reserved.
+		</div>
+	</footer>
+	<script>
+		// Display hidden items when logged in
+		function determineHidden (class1, class2) {
+			elements = document.querySelectorAll(class1);
+			elements.forEach(function(element) {
+				element.classList.remove('hidden');
+			});
+			elements = document.querySelectorAll(class2);
+			elements.forEach(function(element) {
+				element.classList.add('hidden');
+			});
+				
+		} 
+
+		function handleSecondGroup(e) {
+			target = e.target;
+			
+			switch (target.id) {
+				case "login__btn" : 
+					$('.login__wrapper').slideToggle('slow');
+					break;
+				case "logout__btn" :
+					$.get('./api_logout.php').done(()=>{
+						window.location.replace('index.html');
+					});
+					break;
+			}
+		}
+
+		function htmlEscape(str) {
+		    // 建立一個暫存的div元素，並使用text()將內容存成html編碼文字後再用html()取出
+		    return $('<div/>').text(str).html();
+		}
+
+		// Check privilege	
+		const req = new XMLHttpRequest();
+		req.onload = function() {
+			if (req.status >= 200 && req.status <400) {
+				let json = JSON.parse(req.responseText);
+				if (json[0]['admin']) {
+					determineHidden('.logged__in', '.logged__out');	
+				} else {
+					window.location.replace('index.html');
+				}	
+			}
+		}
+				
+		req.onerror = function() {
+			console.log('error');
+		}
+		
+		req.open('GET', './check_privilege.php', true);
+		req.send();
+		
+
+		// Click second group buttons
+		$('.btns2').on('click', (e)=>{
+			handleSecondGroup(e);
+		});
+
+		// From login form back to main page
+		$('.login__wrapper').on('click', (e)=>{
+			if (e.target.classList.contains('login__wrapper')){
+				$("#warning__msg").html('');
+				$(".login__form > input").val('');
+				$('.login__wrapper').slideToggle(500);
+			}
+		});
+
+		// Click login form submit button
+		$('.form__btn').on('click', (e)=>{
+			e.preventDefault();
+			let username = $("#username").val();
+			let password = $("#password").val();
+			$.post( "api_login.php", { username: username, password: password })
+			  .done(function(data) {
+			 
+			  	msg = data[0]['msg'];
+			  	if (msg === true) {
+			  		location.reload();
+			  	} else {
+			  	  $("#warning__msg").html(msg);
+				}
+			  });
+		});
+
+		
+	</script>
+</body>
+</html>
