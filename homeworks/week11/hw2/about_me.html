@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title> Jared's Blog - about me </title>
+	<link rel="stylesheet" href="./style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="login__wrapper hidden">
+		<div class="login__container">
+			<div class="login__desc">
+				<div class="login__title">Log In</div>
+				<form class="login__form" method="POST" action="#">
+					<div class="input__desc">USERNAME</div>
+					<input type="input" id="username" focus required/>
+					<div class="input__desc">PASSWORD</div>
+					<input type="password" id="password" focus required/>
+					<button class="form__btn" type="submit">SIGN IN</button>
+				</form>
+				<div id="warning__msg"></div>
+			</div>
+		</div>
+	</div>
+	<nav class="nav__bar">
+		<div class="wrapper">
+			<a class="icon" href="./index.html">Jared's Blog</a>
+			<div class="link__btns btns1">
+				<a class="link__btn" href="./blog_list.html">文章列表</a>
+				<a class="link__btn" href="#">分類專區</a>
+				<a class="link__btn" href="./about_me.html">關於我</a>
+			</div>
+			<div class="link__btns btns2">
+				<a class="link__btn logged__in hidden" id="admin__btn" href="./admin.html">管理後台</a>
+				<a class="link__btn logged__in hidden" id="new__post__btn" href="new_blog.html">發新文章</a>
+				<a class="link__btn logged__in hidden" id="logout__btn" href="#">登出</a>
+				<a class="link__btn logged__out" id="login__btn" href="#">登入</a>
+			</div>
+		</div>
+	</nav>
+	<div class="wrapper">
+		<div class="banner">
+			<div class="banner__desc">
+				<div class="page__title">
+					關於我
+				</div>
+				<div class="page__subtitle">
+					Just an engineer
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="wrapper blogs__wrapper ">
+		<div class="blogs__container">
+			<div class="blog about__me">蘇軾（1037年1月8日－1101年8月24日），眉州眉山（今四川省眉山市）人，北宋時著名的文學家、政治家、藝術家、醫學家。字子瞻，一字和仲，號東坡居士、鐵冠道人[1]。嘉佑二年進士，累官至端明殿學士兼翰林學士，禮部尚書。南宋理學方熾時，加賜諡號文忠，複追贈太師。有《東坡先生大全集》及《東坡樂府》詞集傳世，宋人王宗稷收其作品，編有《蘇文忠公全集》。
+
+				其散文、詩、詞、賦均有成就，且善書法和繪畫，是文學藝術史上的通才，也是公認韻文散文造詣皆比較傑出的大家。蘇軾的散文為唐宋四家（韓柳歐蘇）之末，與唐代的古文運動發起者韓愈並稱為「韓潮蘇海」，也與歐陽修並稱「歐蘇」；更與父親蘇洵、弟蘇轍合稱「三蘇」，父子三人，同列唐宋八大家。蘇軾之詩與黃庭堅並稱「蘇黃」[2]，又與陸游並稱「蘇陸」[3]；其詞「以詩入詞」，首開詞壇「豪放」一派，振作了晚唐、五代以來綺靡的西崑體餘風。後世與南宋辛棄疾並稱「蘇辛」，惟蘇軾故作豪放，其實清朗；其賦亦頗有名氣，最知名者為貶謫期間借題發揮寫的前後《赤壁賦》。宋代每逢科考常出現其文命題之考試，故當時學者曰：「蘇文熟，喫羊肉、蘇文生，嚼菜羹」。藝術方面，書法名列「蘇、黃、米、蔡[4]」北宋四大書法家（宋四家）之首；其畫則開創了湖州畫派；並在題畫文學史上佔有舉足輕重的地位。
+
+				政治上，在王安石變法期間，雖贊同政治應該改革，但反對王安石任用的後任呂惠卿及一些政策，招來新黨爪牙李定橫加陷害；後來又因反對「盡廢新法」受到司馬光為首的舊黨斥退，終生當不了宰相。在新舊黨爭中兩邊不討好導致仕途失意，被侍妾王朝雲戲稱為「一肚皮不合時宜」。[5]元祐更化中，一度官至尚書；宋哲宗紹聖復述又加貶謫至儋州（海南島）；徽宗即位，遇赦北歸時病卒於常州。墓在河南郟縣。
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="copyright">
+			Copyright © 2020 Jared's Blog All Rights Reserved.
+		</div>
+	</footer>
+	<script>
+		// Display hidden items when logged in
+		function determineHidden (class1, class2) {
+			elements = document.querySelectorAll(class1);
+			elements.forEach(function(element) {
+				element.classList.remove('hidden');
+			});
+			elements = document.querySelectorAll(class2);
+			elements.forEach(function(element) {
+				element.classList.add('hidden');
+			});
+				
+		} 
+
+		function handleSecondGroup(e) {
+			target = e.target;
+			
+			switch (target.id) {
+				case "login__btn" : 
+					$('.login__wrapper').slideToggle('slow');
+					break;
+				case "logout__btn" :
+					$.get('./api_logout.php').done(()=>{
+						window.location.replace('index.html');
+					});
+					break;
+			}
+		}
+
+		function htmlEscape(str) {
+		    // 建立一個暫存的div元素，並使用text()將內容存成html編碼文字後再用html()取出
+		    return $('<div/>').text(str).html();
+		}
+
+		// Check privilege	
+		const req = new XMLHttpRequest();
+		req.onload = function() {
+			if (req.status >= 200 && req.status <400) {
+				let json = JSON.parse(req.responseText);
+				if (json[0]['admin']) {
+					determineHidden('.logged__in', '.logged__out');	
+				} 
+			}
+		}
+				
+		req.onerror = function() {
+			console.log('error');
+		}
+		
+		req.open('GET', './check_privilege.php', true);
+		req.send();
+		
+
+		// Click second group buttons
+		$('.btns2').on('click', (e)=>{
+			handleSecondGroup(e);
+		});
+
+		// From login form back to main page
+		$('.login__wrapper').on('click', (e)=>{
+			if (e.target.classList.contains('login__wrapper')){
+				$("#warning__msg").html('');
+				$(".login__form > input").val('');
+				$('.login__wrapper').slideToggle(500);
+			}
+		});
+
+		// Click login form submit button
+		$('.form__btn').on('click', (e)=>{
+			e.preventDefault();
+			let username = $("#username").val();
+			let password = $("#password").val();
+			$.post( "api_login.php", { username: username, password: password })
+			  .done(function(data) {
+			 
+			  	msg = data[0]['msg'];
+			  	if (msg === true) {
+			  		location.reload();
+			  	} else {
+			  	  $("#warning__msg").html(msg);
+				}
+			  });
+		});
+
+		
+	</script>
+</body>
+</html>
