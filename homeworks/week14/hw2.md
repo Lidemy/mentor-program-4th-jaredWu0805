@@ -1,0 +1,4 @@
+這題自己花了大約兩天多才搞定，一開始跟助教要完 gandi 折扣碼後就想說上 AWS 看看有沒有簡易教學照本宣科架一個網站，結果事實證明直接看官方文件有時資訊量會太多導致沒什麼效率...
+我一進到 AWS 申請完免費試用帳號後，先看了 AWS 核心概念教學，學會了 five pillars of AWS，這概念主要在講使用 AWS 的服務時，應該要考慮到哪些層面才能符合自身產品的需求，這 five pillars 包括 operational excellence, performance efficiency, cost optimization, security, reliability，這個文章雖然跟自己要架網站的任務無關，但還是學習到了一些商業上需要注意到的東西。
+接著自己就開始跟著 AWS 上的各種教學文章各種嘗試，自己先後用了 AWS Amplify, AWS API Gateway，AWS Lambda，AWS RDS，建了一堆自己不清楚在做什麼的靜態網頁、API、函式和資料庫，到頭來還是不知道怎麼把自己之前寫的 php 檔案丟上 AWS 執行，而第一天自己就在這混亂和資訊爆炸的狀態下放棄掙扎去睡覺了。
+結果第二天要繼續弄 AWS 時，突然就想到自己既然是要架網站，那應該就是要先弄一台主機才對，所以就開始設置 EC2 instance，後來上網找了一些教學文章學會如何在 EC2 上跑 Apache、設置 MySQL資料庫、遠端連線及傳資料到 EC2 主機、如何把自己註冊的 domain 跟 instance 綁在一起，最後把自己之前做的作業都丟上主機就大功告成架網站的工作了，
